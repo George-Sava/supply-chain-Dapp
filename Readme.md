@@ -1,9 +1,9 @@
----Description---
+## Description
     Simple Supply-Chain Dapp for Ethereum blockchain. 
     
     Devstack: React, Redux, Drizzle, Web3, Solidity, MUI, Webpack5  
 
----Necesary steps for starting the local Development blockchain server---    
+### Necesary steps for starting the local Development blockchain server  
     1. Download and install Ganache --> https://trufflesuite.com/ganache/index.html
     2. Download and install Truffle --> https://trufflesuite.com/truffle/
     3. Git clone repository
