@@ -26,4 +26,4 @@ You can compile the smart contracts before migrating the to see if there are any
 
 ### Note
 
-This is a good starting template for Frontend state management. Just Replace the App component with your own and you have the Redux state all hooked up to Web3 
+This is a good starting template for Frontend Dapp state management. Just Replace the App component with your own and you have the Redux state all hooked up to Web3 
