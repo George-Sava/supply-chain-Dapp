@@ -13,9 +13,13 @@ Devstack: React, Redux, Drizzle, Web3, Solidity, MUI, Webpack5
 6. Migrate smart contracts with command: <br/>
 ##
     truffle migrate  
-You can compile the smart contracts before migrating the to see if there are any compile errors.<br/>
+You can compile the smart contracts before migrating the to see if there are any compile errors.With command:<br/>
+##
+    truffle compile
 7.  Run: <br/>
+##
     cd client
 8. Finally: <br/>
+##
     npm start 
 to start React
