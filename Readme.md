@@ -1,5 +1,6 @@
 ## Description
-    Simple Supply-Chain Dapp for Ethereum blockchain. 
+
+Simple Supply-Chain Dapp for Ethereum blockchain. 
     
     Devstack: React, Redux, Drizzle, Web3, Solidity, MUI, Webpack5  
 
