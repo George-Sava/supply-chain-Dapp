@@ -5,7 +5,7 @@ import './css/index.css';
 import App from './Components/App';
 import {BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
     <Router>

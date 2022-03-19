@@ -1,26 +1,19 @@
 import React, {useEffect, useState, useCallback} from "react";
 import {
     Box,
-    TextField,
     Grid,
     Button
 } from "@mui/material";
-import { styled } from '@mui/material/styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {createItem, initializeItemIndex, synchItemList} from '../redux-slicers/itemManagerSlice';
-import ItemsComponent from './ItemsComponent';
-import ItemListComponent from './ItemListComponent';
+import ItemsComponent from './ItemsCountComponent';
+import ItemsCountComponent from './ItemListComponent';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import CustomInput from './CustomStyledTextField';
 
 
-const CustomInput = styled((props) =>( <TextField  {...props} />))({
-    '& label.Mui-focused': {
-      color: 'white'
-    }});
 
-
-export function ItemInfo({drizzle, drizzleState})
+export function ItemInfo({drizzle, drizzleState, getItems})
 {
     const [itemPrice, setItemPrice] = useState(0);
     const [itemID, setItemID] = useState('');
@@ -67,6 +60,7 @@ export function ItemInfo({drizzle, drizzleState})
 
                     dispatch(
                         createItem({
+                            index:itemIndex,
                             id:itemID,
                             priceInWei: itemPrice,
                             address: itemAddress,
@@ -82,26 +76,6 @@ export function ItemInfo({drizzle, drizzleState})
         }
     };
 
-    const getItems = useCallback(async () => 
-    {
-        let auxArr = [];
-
-        for(let i = 0; i < itemIndex; i++)
-        {
-            await itemManagerContract.methods.items(i).call()
-            .then((res)=>
-            {
-                auxArr.push({
-                    address: res._item,
-                    id: res._itemID,
-                    priceInWei: res._itemPrice,
-                    itemState: res._itemState
-                })
-            })
-        }
-
-        dispatch(synchItemList(auxArr));
-    },[itemIndex])
 
     useEffect( ()=> 
     {
@@ -169,7 +143,7 @@ export function ItemInfo({drizzle, drizzleState})
                     </Grid>
                 </Grid>
                 <Grid item xs={12} >
-                    {itemIndex !== 0? <ItemListComponent itemList={itemList} getItems={getItems}/>: ''}
+                    {itemIndex !== 0? <ItemsCountComponent itemList={itemList} getItems={getItems}/>: ''}
                 </Grid>
             </Grid>
         </Grid>

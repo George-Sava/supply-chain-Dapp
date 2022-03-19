@@ -4,7 +4,7 @@ import {
 } from "@mui/material";
 import {useSelector} from 'react-redux';
 
-function ItemsComponent ({ getItems}) 
+function ItemsCountComponent ({ getItems}) 
 {
     const itemCount = useSelector((state) => state.itemManagerSlice.totalQuantity);
 
@@ -22,4 +22,4 @@ function ItemsComponent ({ getItems})
     )
 }
 
-export default ItemsComponent;
+export default ItemsCountComponent;
