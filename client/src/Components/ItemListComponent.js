@@ -39,7 +39,7 @@ function ItemListComponent({itemList, getItems, drizzle})
                             </Grid>
                             <Grid item xs={2}>
                                 <Typography variant="body1" gutterBottom>
-                                    Item ID: {item.id}
+                                    Item Identifier: {item.id}
                                 </Typography>
                             </Grid>
                             <Grid item xs={2}>
