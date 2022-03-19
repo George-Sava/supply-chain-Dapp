@@ -19,7 +19,6 @@ You can compile the smart contracts before migrating the to see if there are any
 7.  Open Client Folder: <br/>
 ##
     cd client
-8. Finally: <br/>
+8. Finally start React Dev Server with command: <br/>
 ##
     npm start 
-to start React
