@@ -16,7 +16,7 @@ Devstack: React, Redux, Drizzle, Web3, Solidity, MUI, Webpack5
 You can compile the smart contracts before migrating the to see if there are any compile errors.With command:<br/>
 ##
     truffle compile
-7.  Run: <br/>
+7.  Open Client Folder: <br/>
 ##
     cd client
 8. Finally: <br/>
