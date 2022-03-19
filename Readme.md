@@ -11,6 +11,7 @@ Devstack: React, Redux, Drizzle, Web3, Solidity, MUI, Webpack5
 4. Run Ganache<br/>
 5. Open terminal in project root folder<br/>
 6. Migrate smart contracts with command: <br/>
+##
     truffle migrate  
 You can compile the smart contracts before migrating the to see if there are any compile errors.<br/>
 7.  Run: <br/>
