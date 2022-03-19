@@ -14,8 +14,8 @@ const Main = ({ drizzle, drizzleState }) =>
         <Container fluid="true" maxWidth="100%">
             <Grid 
               container 
-              spacing={1}
-              columnSpacing={1} 
+              spacing={0}
+              columnSpacing={0} 
               alignItems="center"
             >
                 <Grid 
@@ -28,7 +28,7 @@ const Main = ({ drizzle, drizzleState }) =>
                 <Grid item xs={12} >
                     <Grid
                       container
-                      spacing={2} 
+                      spacing={1} 
                     >
                         <Grid item xs={2}>
                             <SideMenuComponent drizzle={drizzle} drizzleState={drizzleState}/>

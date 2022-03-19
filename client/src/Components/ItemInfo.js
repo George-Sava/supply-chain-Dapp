@@ -79,7 +79,6 @@ export function ItemInfo({drizzle, drizzleState})
         else
         {
             notify(`Item with Id: ${itemID}, already exists!`)
-            console.log('err')
         }
     };
 
@@ -110,7 +109,7 @@ export function ItemInfo({drizzle, drizzleState})
     },[drizzleState])
 
     return (
-    <Grid container sx={{border: '1px solid white'}}>
+    <Grid container sx={{border: '1px solid white', padding: '5px', borderRadius: '8px', backgroundColor: '#1f4c57'}}>
         <Grid item xs={12} component="h3" sx={{textAlign: "center"}}> Item Info</Grid>
         <Grid item xs={12}  align="center"> 
             <ToastContainer />
@@ -122,7 +121,7 @@ export function ItemInfo({drizzle, drizzleState})
                     {/* to add button for itemlist feature */}
                 </Grid>
                 <Grid item xs={12} align="center">
-                    <Grid container>
+                    <Grid container spacing={2}>
                         <Grid item xs={1} align="left">
                             <Box component="h4" >
                                 Add item
@@ -131,25 +130,27 @@ export function ItemInfo({drizzle, drizzleState})
                         <Grid item xs={5}>
                             <CustomInput 
                             type="number" 
-                            label="Price in Wey" 
+                            label="Input Price" 
                             variant="standard"
-                            InputProps={{ inputProps: { min: 0}, style: { color: "white"} }} 
+                            InputProps={{ inputProps: { min: 0}, style: { color: "white"}}} 
                             onChange={getInputPrice}
                             sx={{
                                 input:{color:"white"},
-                                label:{color:"white"}
+                                label:{color:"white"},
+                                width: "100%"
                                 }}
                             />
                         </Grid>
                         <Grid item xs={5}>
                             <CustomInput 
-                                label="Item ID"
+                                label="Input Item ID"
                                 variant="standard"
                                 InputProps={{  }}
                                 onChange={getInputID}
                                 sx={{
                                     input:{color:"white"},
-                                    label:{color:"white"}
+                                    label:{color:"white"},
+                                    width: "100%"
                                     }}
                             />
                         </Grid>
@@ -167,7 +168,7 @@ export function ItemInfo({drizzle, drizzleState})
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} >
                     {itemIndex !== 0? <ItemListComponent itemList={itemList} getItems={getItems}/>: ''}
                 </Grid>
             </Grid>
