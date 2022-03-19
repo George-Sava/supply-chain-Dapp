@@ -16,7 +16,7 @@ function ItemsCountComponent ({ getItems})
     return(
         <>
             <Typography component="h5">
-                Items:{itemCount }
+                Total created Items:{itemCount }
             </Typography>
         </>
     )

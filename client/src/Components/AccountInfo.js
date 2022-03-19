@@ -3,7 +3,7 @@ import {
     Grid
 } from "@mui/material";
 
-export function AccountInformation ({drizzle, drizzleState }) 
+export function AccountInformation ({drizzle, drizzleState, accountBalance }) 
 {
     return(
         <Grid container alignItems="center" >
@@ -13,7 +13,7 @@ export function AccountInformation ({drizzle, drizzleState })
                   sx={{ whiteSpace: 'normal' }}
                 >Account Address: {drizzleState.accounts[0]} </Box>
             </Grid> */}
-            <Grid item xs={12} align="center">Balance: {drizzle.web3.utils.fromWei(drizzleState.accountBalances[drizzleState.accounts[0]])}Ether</Grid>
+            <Grid item xs={12} align="center">Balance: {drizzle.web3.utils.fromWei(`${accountBalance}`)} Ether</Grid>
         </Grid>
     );
 }

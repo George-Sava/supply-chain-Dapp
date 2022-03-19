@@ -5,7 +5,7 @@ import {
     Button
 } from "@mui/material";
 import {useDispatch, useSelector} from 'react-redux';
-import {createItem, initializeItemIndex, synchItemList} from '../redux-slicers/itemManagerSlice';
+import {createItem, initializeItemIndex} from '../redux-slicers/itemManagerSlice';
 import ItemsComponent from './ItemsCountComponent';
 import ItemsCountComponent from './ItemListComponent';
 import { toast, ToastContainer } from 'react-toastify';
@@ -52,7 +52,8 @@ export function ItemInfo({drizzle, drizzleState, getItems})
 
         if(!existingItem)
         {
-            await itemManagerContract.methods.createItem(itemID,itemPrice).send({from: drizzleState.accounts[0]})
+            console.log('ItemPrice:', itemPrice)
+            await itemManagerContract.methods.createItem(itemID,drizzle.web3.utils.toWei( `${itemPrice}` , "ether") ).send({from: drizzleState.accounts[0]})
                 .then((result)=>{
                     let itemAddress = result.events.SupplyChaninStep.returnValues._itemAddress;
                     let itemState = result.events.SupplyChaninStep.returnValues._itemState;
@@ -62,7 +63,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                         createItem({
                             index:itemIndex,
                             id:itemID,
-                            priceInWei: itemPrice,
+                            priceInWei: drizzle.web3.utils.toWei(itemPrice),
                             address: itemAddress,
                             itemIndex: itemIndex,
                             itemState: itemState
@@ -104,7 +105,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                         <Grid item xs={5}>
                             <CustomInput 
                             type="number" 
-                            label="Input Price" 
+                            label="Item Price (ETH)" 
                             variant="standard"
                             InputProps={{ inputProps: { min: 0}, style: { color: "white"}}} 
                             onChange={getInputPrice}
@@ -117,7 +118,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                         </Grid>
                         <Grid item xs={5}>
                             <CustomInput 
-                                label="Input Item ID"
+                                label="Item Identifier"
                                 variant="standard"
                                 InputProps={{  }}
                                 onChange={getInputID}
@@ -143,7 +144,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                     </Grid>
                 </Grid>
                 <Grid item xs={12} >
-                    {itemIndex !== 0? <ItemsCountComponent itemList={itemList} getItems={getItems}/>: ''}
+                    {itemIndex !== 0? <ItemsCountComponent itemList={itemList} getItems={getItems} drizzle={drizzle}/>: ''}
                 </Grid>
             </Grid>
         </Grid>

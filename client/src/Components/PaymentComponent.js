@@ -8,7 +8,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import { toast } from 'react-toastify';
 
-const PaymentComponent = ({drizzle, getItems}) =>
+const PaymentComponent = ({drizzle, getItems, getAccountBalance}) =>
 {
     const dispatch = useDispatch();
     const itemList = useSelector(state => state.itemManagerSlice.itemList);
@@ -28,7 +28,7 @@ const PaymentComponent = ({drizzle, getItems}) =>
 
             await drizzle.web3.eth.sendTransaction({from: currentAddress, to: itemAddress, value: itemPrice})
             getItems()
-                
+            getAccountBalance()    
         }
     })
 

@@ -3,13 +3,11 @@ import { Routes, Route} from "react-router-dom";
 import { Drizzle, generateStore } from "@drizzle/store";
 import { DrizzleContext } from "@drizzle/react-plugin";
 import { Provider as ReduxProvider } from "react-redux";
-
 import contractEventNotifier from '../middleware/index';
-
 import itemManagerSlice from "../redux-slicers/itemManagerSlice";
 import ItemManagerContract from "../contracts/ItemManager.json"
-
 import Main from './Main';
+import '../css/App.css'
 
 
 //  Setup the drizzle instance.
@@ -50,7 +48,7 @@ const App = () =>
               }
               return (
                 <Routes>
-                  <Route path="/" element={<Main drizzle={drizzle} drizzleState={drizzleState} />} />
+                  <Route path="/" element={<Main className="App" drizzle={drizzle} drizzleState={drizzleState} />} />
                 </Routes>)
             }
           }

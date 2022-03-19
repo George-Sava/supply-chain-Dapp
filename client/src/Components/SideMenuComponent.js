@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
     Grid
 } from "@mui/material";
@@ -9,6 +9,22 @@ import PaymentComponent from './PaymentComponent';
 
 function SideMenuComponent({ drizzle, drizzleState, getItems })
 {
+    const [balance, setBalance] = useState('0');
+
+    const getAcountBalance = async() =>
+    {
+        if(drizzleState)
+        {    
+            let acBalance = await drizzle.web3.eth.getBalance(drizzleState.accounts[0])
+            setBalance(acBalance)
+        }
+    }
+
+    useEffect(() =>
+    {
+        getAcountBalance()
+    })
+
     return(
         <Grid container sx={{
             border: '1px solid white',
@@ -17,10 +33,10 @@ function SideMenuComponent({ drizzle, drizzleState, getItems })
             paddingTop: '5px'
             }}>
             <Grid item xs={12}>
-                <AccountInformation drizzle={drizzle} drizzleState={drizzleState} />
+                <AccountInformation drizzle={drizzle} drizzleState={drizzleState} getAccountBalance={getAcountBalance} accountBalance={balance}/>
             </Grid>
             <Grid item xs={12}>
-                <PaymentComponent drizzle={drizzle} getItems={getItems}/>
+                <PaymentComponent drizzle={drizzle} getItems={getItems} getAcountBalance={getAcountBalance}/>
             </Grid>
         </Grid>
     )

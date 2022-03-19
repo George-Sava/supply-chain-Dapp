@@ -5,7 +5,7 @@ import {
     Grid
 } from "@mui/material";
 
-function ItemListComponent({itemList, getItems})
+function ItemListComponent({itemList, getItems, drizzle})
 {
     useEffect(() =>
     {
@@ -44,14 +44,12 @@ function ItemListComponent({itemList, getItems})
                             </Grid>
                             <Grid item xs={2}>
                                 <Typography variant="body1" gutterBottom>
-                                    Price: {item.priceInWei}
+                                    Price: {drizzle.web3.utils.fromWei(item.priceInWei)} ETH
                                 </Typography>
                             </Grid>
-    
                                 <Grid item xs={2} >
                                     <Typography variant="body1" gutterBottom>
-                                        State: {item.itemState === '0'? 'Created': item.itemState === '1'? 'Payed': 'Delivered'}
-
+                                        State: {item.itemState === '0' ? 'Created': item.itemState === '1'? 'Payed': 'Delivered'}
                                     </Typography>
                                 </Grid> 
 

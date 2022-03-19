@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #185357;
+  background-image: url(../images/pexels-mitchell-luo-3824706.jpg);
+  opacity: 1;
   color: white;
 }
 
