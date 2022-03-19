@@ -22,3 +22,6 @@ You can compile the smart contracts before migrating the to see if there are any
 8. Finally start React Dev Server with command: <br/>
 ##
     npm start 
+
+
+# Note
