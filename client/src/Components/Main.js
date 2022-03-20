@@ -40,7 +40,7 @@ const Main = ({ drizzle, drizzleState }) =>
         <Container fluid="true" maxWidth="100%">
             <Grid 
               container 
-              spacing={0}
+              spacing={2}
               columnSpacing={0} 
               alignItems="center"
             >
@@ -49,7 +49,7 @@ const Main = ({ drizzle, drizzleState }) =>
                   xs={12} 
                   align="center"
                 >
-                    <Box><h1>Supply-Chain Dapp!</h1></Box>
+                    {/* <Box><h1>Supply-Chain Dapp!</h1></Box> */}
                 </Grid>
                 <Grid item xs={12} >
                     <Grid

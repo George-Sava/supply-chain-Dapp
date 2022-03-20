@@ -85,7 +85,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
 
     return (
     <Grid container sx={{border: '1px solid white', padding: '5px', borderRadius: '8px', backgroundColor: '#1f4c57'}}>
-        <Grid item xs={12} component="h3" sx={{textAlign: "center"}}> Item Info</Grid>
+        <Grid item xs={12} component="h2" sx={{textAlign: "center"}}> Warehouse Inventory</Grid>
         <Grid item xs={12}  align="center"> 
             <ToastContainer />
             <Grid container >
@@ -139,7 +139,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                                 }} 
                             variant="contained"
                             onClick={createItemAction}
-                            > Create new item</Button>
+                            > Add new item</Button>
                         </Grid>
                     </Grid>
                 </Grid>
