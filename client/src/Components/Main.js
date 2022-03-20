@@ -42,13 +42,11 @@ const Main = ({ drizzle, drizzleState }) =>
               container 
               spacing={2}
               columnSpacing={0} 
-              alignItems="center"
-            >
+              alignItems="center">
                 <Grid 
                   item 
                   xs={12} 
-                  align="center"
-                >
+                  align="center">
                     {/* <Box><h1>Supply-Chain Dapp!</h1></Box> */}
                 </Grid>
                 <Grid item xs={12} >

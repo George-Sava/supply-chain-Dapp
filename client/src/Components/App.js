@@ -42,10 +42,12 @@ const App = () =>
             drizzleContext => 
             {
               const { drizzle, drizzleState, initialized } = drizzleContext;
+          
               if (!initialized) 
               {
                 return "Loading..."
               }
+
               return (
                 <Routes>
                   <Route path="/" element={<Main className="App" drizzle={drizzle} drizzleState={drizzleState} />} />
