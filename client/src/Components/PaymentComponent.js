@@ -47,11 +47,10 @@ const PaymentComponent = ({drizzle, getItems, getAccountBalance}) =>
                     variant="outlined"
                     
                     onChange={(e) => setItemID(e.target.value)}
-                    inputProps={{style: { textAlign: 'center' }}}
+                    InputProps={{ style: { color: "white", backgroundColor: "#256170"}}}
                     sx={{
                         input:{color:"white"},
-                        label:{color:"white", style: { textAlign: 'center' }},
-                        textAlign: 'center'
+                        label:{color:"white"}
                         }}
                     />
                 </Grid>
