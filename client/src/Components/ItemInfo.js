@@ -106,8 +106,8 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                             <CustomInput 
                             type="number" 
                             label="Item Price (ETH)" 
-                            variant="standard"
-                            InputProps={{ inputProps: { min: 0}, style: { color: "white"}}} 
+                            variant="outlined"
+                            InputProps={{ inputProps: { min: 0}, style: { color: "white", backgroundColor: "#256170"}}} 
                             onChange={getInputPrice}
                             sx={{
                                 input:{color:"white"},
@@ -119,8 +119,8 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                         <Grid item xs={5}>
                             <CustomInput 
                                 label="Item Identifier"
-                                variant="standard"
-                                InputProps={{  }}
+                                variant="outlined"
+                                InputProps={{  style: { color: "white", backgroundColor: "#256170"} }}
                                 onChange={getInputID}
                                 sx={{
                                     input:{color:"white"},

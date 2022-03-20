@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import SideMenuComponent from './SideMenuComponent';
 import {useDispatch, useSelector} from 'react-redux';
-import {createItem, initializeItemIndex, synchItemList} from '../redux-slicers/itemManagerSlice';
+import {synchItemList} from '../redux-slicers/itemManagerSlice';
 import {ItemInfo} from './ItemInfo';
 
 const Main = ({ drizzle, drizzleState }) =>

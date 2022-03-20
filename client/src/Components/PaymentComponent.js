@@ -39,16 +39,19 @@ const PaymentComponent = ({drizzle, getItems, getAccountBalance}) =>
                     Purchase Item
                 </Grid>
                 <Grid item xs={12} align="center" component="h5">
-                    Item Identifier
+                    Input the Item Identifier
                 </Grid>
                 <Grid item xs={12} align="center" component="h5">
                     <CustomStyledTextField 
-                    label="Input Item Identifier"
-                    variant="standard"
+                    label="Item Identifier"
+                    variant="outlined"
+                    
                     onChange={(e) => setItemID(e.target.value)}
+                    inputProps={{style: { textAlign: 'center' }}}
                     sx={{
                         input:{color:"white"},
-                        label:{color:"white"}
+                        label:{color:"white", style: { textAlign: 'center' }},
+                        textAlign: 'center'
                         }}
                     />
                 </Grid>
