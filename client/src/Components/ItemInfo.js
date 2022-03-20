@@ -96,13 +96,13 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                     {/* to add button for itemlist feature */}
                 </Grid>
                 <Grid item xs={12} align="center">
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} alignItems="center">
                         <Grid item xs={1} align="left">
                             <Box component="h4" >
                                 Add item
                             </Box>
                         </Grid>
-                        <Grid item xs={5}>
+                        <Grid item xs={4}>
                             <CustomInput 
                             type="number" 
                             label="Item Price (ETH)" 
@@ -129,7 +129,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
                                     }}
                             />
                         </Grid>
-                        <Grid item xs={12} align="center">
+                        <Grid item xs={2} align="center">
                             <Button 
                             sx={{
                                 backgroundColor: "#C64191", 
