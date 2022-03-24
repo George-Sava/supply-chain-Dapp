@@ -23,11 +23,19 @@ contract ItemManager is Ownable
         ItemManager.SupplyChaninState _itemState;
     }
 
-    mapping ( uint => ItemModel ) public items;
+    struct DetailedItemList
+    {
+      uint itemIndex;
+      mapping (uint => ItemModel) itemList;
+    }
 
+    mapping (uint => ItemModel ) public items;
+    mapping (address => DetailedItemList) public ownedItems;
+    
     event SupplyChaninStep(uint _itemIndex, uint _itemState, address _itemAddress);
     event ItemDetails(string _itemID, uint _itemPrice, Item _item);
     uint public itemIndex;
+    event ItemCount(uint _itemCount);
 
 
     function createItem(string memory _id, uint _itemPrice)
@@ -47,9 +55,24 @@ contract ItemManager is Ownable
 
     function findItemByIndex(uint _itemIndex)
       public
-      onlyOwner
     {
       emit ItemDetails(items[_itemIndex]._itemID, items[_itemIndex]._itemPrice, items[_itemIndex]._item);
+    }
+
+    function getItemCountOfAccount(address _address)
+      public
+    {
+      require(_address == msg.sender, "You do not have permission");
+      
+      emit ItemCount(ownedItems[_address].itemIndex);
+    }
+
+    function findItemByIndexForAccount(address _address, uint _index)
+      public
+    {
+      require(_address == msg.sender, "You do not have permission");
+
+      emit ItemDetails(ownedItems[_address].itemList[_index]._itemID,ownedItems[_address].itemList[_index]._itemPrice,ownedItems[_address].itemList[_index]._item);
     }
 
     function triggerPayment(uint _itemIndex)
@@ -60,6 +83,10 @@ contract ItemManager is Ownable
         require(items[_itemIndex]._itemState == SupplyChaninState.Created, "Item Not created or was allready paid!");
 
         items[_itemIndex]._itemState = SupplyChaninState.Paid;
+
+        DetailedItemList storage newDetails = ownedItems[msg.sender];
+        newDetails.itemList[newDetails.itemIndex] = items[_itemIndex];
+        newDetails.itemIndex++;
 
         emit SupplyChaninStep(_itemIndex, uint(items[_itemIndex]._itemState), address(items[_itemIndex]._item));
 

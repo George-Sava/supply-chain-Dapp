@@ -8,7 +8,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import { toast } from 'react-toastify';
 
-const PaymentComponent = ({drizzle, getItems, getAccountBalance}) =>
+const PaymentComponent = ({drizzle, getAccountBalance}) =>
 {
     const dispatch = useDispatch();
     const itemList = useSelector(state => state.itemManagerSlice.itemList);
@@ -19,16 +19,20 @@ const PaymentComponent = ({drizzle, getItems, getAccountBalance}) =>
 
     const triggerPayment = useCallback(async (id) => {
         const item = itemList.find(item => item.id === id)
-
+        console.log(itemList)
         if (item)
         {
             const itemPrice = item.priceInWei
             // const itemIndex = item.index
             const itemAddress = item.address
 
-            await drizzle.web3.eth.sendTransaction({from: currentAddress, to: itemAddress, value: itemPrice})
-            getItems()
+            await drizzle.web3.eth.sendTransaction({from: currentAddress, to: itemAddress, value: itemPrice}).then((res) => console.log('res: ',res))
+            console.log('click')
             getAccountBalance()    
+        }
+        else
+        {
+            toast('No item with ID found!')
         }
     })
 

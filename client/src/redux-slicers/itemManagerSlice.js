@@ -5,7 +5,8 @@ export const itemManagerSlice = createSlice({
     initialState: {
         itemList: [],
         totalQuantity: 0,
-        currentItemIndex: 0
+        currentItemIndex: 0,
+        isOwner: false
     },
     reducers: {
         createItem (state,action) {
@@ -75,6 +76,22 @@ export const itemManagerSlice = createSlice({
             }
         },
 
+        // Set isOwner
+        setIsOwner(state, action) {
+            const isOwner = action.payload;
+
+            if (isOwner)
+            {
+                return {
+                    ...state,
+                    isOwner: isOwner
+                }
+            }
+            else
+            {
+                return state
+            }
+        },
         
         // Find item by ID
         findItem(state, action) {},
@@ -89,7 +106,8 @@ export const itemManagerSlice = createSlice({
 
 export const  {
     createItem, 
-    synchItemList, 
+    synchItemList,
+    setIsOwner, 
     initializeItemIndex, 
     findItem, 
     triggerPayment, 

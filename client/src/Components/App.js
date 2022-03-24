@@ -1,3 +1,4 @@
+import '../css/App.css'
 import React from "react";
 import { Routes, Route} from "react-router-dom";
 import { Drizzle, generateStore } from "@drizzle/store";
@@ -7,7 +8,10 @@ import contractEventNotifier from '../middleware/index';
 import itemManagerSlice from "../redux-slicers/itemManagerSlice";
 import ItemManagerContract from "../contracts/ItemManager.json"
 import Main from './Main';
-import '../css/App.css'
+import LoadingComponent from './LoadingComponent';
+
+
+
 
 
 //  Setup the drizzle instance.
@@ -45,7 +49,7 @@ const App = () =>
           
               if (!initialized) 
               {
-                return "Loading..."
+                return <LoadingComponent />
               }
 
               return (

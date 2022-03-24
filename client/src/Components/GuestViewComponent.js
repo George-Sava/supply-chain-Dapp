@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect} from "react";
 import {
     Grid
 } from "@mui/material";
@@ -7,23 +7,13 @@ import {
 } from './AccountInfo';
 import PaymentComponent from './PaymentComponent';
 
-function SideMenuComponent({ drizzle, drizzleState, getItems })
+function GuestViewComponent({ drizzle, drizzleState, getItems, balance, getAcountBalance })
 {
-    const [balance, setBalance] = useState('0');
-
-    const getAcountBalance = async() =>
-    {
-        if(drizzleState)
-        {    
-            let acBalance = await drizzle.web3.eth.getBalance(drizzleState.accounts[0])
-            setBalance(acBalance)
-        }
-    }
 
     useEffect(() =>
     {
-        getAcountBalance()
-    })
+        getItems()
+    },[drizzleState])
 
     return(
         <Grid container sx={{
@@ -31,7 +21,9 @@ function SideMenuComponent({ drizzle, drizzleState, getItems })
             backgroundColor: '#1f4c57',
             borderRadius: '5px',
             paddingTop: '5px'
-            }}>
+            }}
+            alignContent="center"
+            >
             <Grid item xs={12}>
                 <AccountInformation drizzle={drizzle} drizzleState={drizzleState} getAccountBalance={getAcountBalance} accountBalance={balance}/>
             </Grid>
@@ -42,4 +34,4 @@ function SideMenuComponent({ drizzle, drizzleState, getItems })
     )
 }
 
-export default SideMenuComponent;
+export default GuestViewComponent;

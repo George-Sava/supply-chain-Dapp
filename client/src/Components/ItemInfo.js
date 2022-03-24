@@ -8,8 +8,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {createItem, initializeItemIndex} from '../redux-slicers/itemManagerSlice';
 import ItemsComponent from './ItemsCountComponent';
 import ItemsCountComponent from './ItemListComponent';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import CustomInput from './CustomStyledTextField';
+
 
 
 
@@ -87,7 +88,7 @@ export function ItemInfo({drizzle, drizzleState, getItems})
     <Grid container sx={{border: '1px solid white', padding: '5px', borderRadius: '8px', backgroundColor: '#1f4c57'}}>
         <Grid item xs={12} component="h2" sx={{textAlign: "center"}}> Warehouse Inventory</Grid>
         <Grid item xs={12}  align="center"> 
-            <ToastContainer />
+
             <Grid container >
                 <Grid item xs={8} align="left">
                     <ItemsComponent getItems={getItems}  /> 

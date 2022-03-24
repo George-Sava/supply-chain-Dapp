@@ -1,19 +1,38 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {
     Container,
-    Grid,
-    Box
 } from "@mui/material";
-import SideMenuComponent from './SideMenuComponent';
 import {useDispatch, useSelector} from 'react-redux';
-import {synchItemList} from '../redux-slicers/itemManagerSlice';
-import {ItemInfo} from './ItemInfo';
+import {synchItemList, setIsOwner, initializeItemIndex} from '../redux-slicers/itemManagerSlice';
+import OwnerComponent from './OwnerComponent';
+import GuestComponent from './GuestComponent';
+import  {ToastContainer}  from 'react-toastify';
 
 const Main = ({ drizzle, drizzleState }) =>
 {
     const itemIndex = useSelector((state) => state.itemManagerSlice.currentItemIndex);
+    const isOwner = useSelector((state) => state.itemManagerSlice.isOwner);
     const itemManagerContract = drizzle.contracts.ItemManager;
+    const [balance, setBalance] = useState('0');
     const dispatch = useDispatch();
+    
+    const getItemIndexKey = useCallback(async () =>
+    {
+        await itemManagerContract.methods.itemIndex().call()
+            .then((res) =>{
+                    let index = parseInt(res)
+                    dispatch(initializeItemIndex(index))
+            });
+    },[drizzleState]);
+
+    const getAcountBalance = async() =>
+    {
+        if(drizzleState)
+        {    
+            let acBalance = await drizzle.web3.eth.getBalance(drizzleState.accounts[0])
+            setBalance(acBalance)
+        }
+    }
 
     const getItems = useCallback(async () => 
     {
@@ -23,7 +42,8 @@ const Main = ({ drizzle, drizzleState }) =>
         {
             await itemManagerContract.methods.items(i).call()
             .then((res)=>
-            {
+            {   
+
                 auxArr.push({
                     index: i,
                     address: res._item,
@@ -36,33 +56,26 @@ const Main = ({ drizzle, drizzleState }) =>
 
         dispatch(synchItemList(auxArr));
     },[itemIndex])
+
+    const checkOwner =async () => 
+    {
+        itemManagerContract.methods.isOwner().call()
+            .then((res) =>{
+                dispatch(setIsOwner(res))
+            })
+    }
+
+    useEffect(() =>
+    {
+        checkOwner();
+        getItemIndexKey()
+        getAcountBalance();
+    },[isOwner])
+
     return(
         <Container fluid="true" maxWidth="100%">
-            <Grid 
-              container 
-              spacing={2}
-              columnSpacing={0} 
-              alignItems="center">
-                <Grid 
-                  item 
-                  xs={12} 
-                  align="center">
-                    {/* <Box><h1>Supply-Chain Dapp!</h1></Box> */}
-                </Grid>
-                <Grid item xs={12} >
-                    <Grid
-                      container
-                      spacing={1} 
-                    >
-                        <Grid item xs={2}>
-                            <SideMenuComponent drizzle={drizzle} drizzleState={drizzleState} getItems={getItems}/>
-                        </Grid>
-                        <Grid item xs={10}>
-                            <ItemInfo drizzle={drizzle} drizzleState={drizzleState} getItems={getItems}/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
+            <ToastContainer />
+            {isOwner?<OwnerComponent drizzle={drizzle} drizzleState={drizzleState} getItems={getItems} balance={balance}/>: <GuestComponent drizzle={drizzle} drizzleState={drizzleState} getItems={getItems} balance={balance} getAcountBalance={getAcountBalance}/>}
         </Container>
     );
 }
